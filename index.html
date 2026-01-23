@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic AI Mock Interview System</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+
+  <!-- Landing shutter / curtain effect -->
+  <div id="landing" class="landing">
+    <div class="shutter left"></div>
+    <div class="shutter right"></div>
+    <div class="landing-content">
+      <h1 class="app-title">Agentic AI Mock Interview System</h1>
+      <button id="landingStart" class="btn-glow">Start Interview</button>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">Agentic AI</div>
+    <div id="status" class="status">Idle</div>
+  </header>
+
+  <main class="main-grid">
+    <section class="question-card" id="questionCard">
+      <h2>Interview Question</h2>
+      <div id="questionText" class="question-text">Loading...</div>
+      <div class="q-controls">
+        <button id="nextQuestionBtn" class="icon-bubble" title="Next Question">
+          <i class="fas fa-forward"></i>
+        </button>
+        <button id="submitInterviewBtn" class="icon-bubble" title="Submit Interview" style="display:none;background:linear-gradient(90deg,var(--neon-2),var(--neon));">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </section>
+
+    <section class="camera-panel">
+      <div class="panel-header">
+        <h3>Interview Camera</h3>
+        <div class="icon-row">
+          <button id="camToggleBtn" class="icon-bubble" title="Camera"><i class="fas fa-camera"></i></button>
+          <button id="micToggleBtn" class="icon-bubble" title="Microphone"><i class="fas fa-microphone"></i></button>
+        </div>
+      </div>
+      <div class="video-wrap">
+        <video id="interviewCamera" autoplay playsinline muted></video>
+      </div>
+    </section>
+
+    <section class="transcript-panel">
+      <div class="panel-header">
+        <h3>Your Answer</h3>
+        <div class="icon-row">
+          <button id="startAnswerBtn" class="icon-bubble" title="Start Answer"><i class="fas fa-play"></i></button>
+          <button id="stopAnswerBtn" class="icon-bubble" title="Stop Answer"><i class="fas fa-stop"></i></button>
+        </div>
+      </div>
+      <textarea id="transcript" class="transcript" placeholder="Transcribed text will appear here..."></textarea>
+    </section>
+
+    <section class="feedback-panel">
+      <h3>Interview Feedback</h3>
+      <div class="scores">
+        <div class="score"><label>Relevance</label><div id="relevanceScore">—</div></div>
+        <div class="score"><label>Clarity</label><div id="clarityScore">—</div></div>
+        <div class="score"><label>Completeness</label><div id="completenessScore">—</div></div>
+      </div>
+      <div id="feedbackText" class="feedback-text">No feedback yet.</div>
+    </section>
+  </main>
+
+  <footer class="footer">Built for practice — frontend demo only</footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

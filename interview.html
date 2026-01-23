@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview - AI Mock Interview System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+  <header class="topbar">
+    <div class="brand">
+      <i class="fas fa-brain"></i>
+      AI Mock Interview
+    </div>
+    <div class="timer-container">
+      <i class="fas fa-clock"></i>
+      <span id="timer">30:00</span>
+    </div>
+    <div id="status" class="status">Ready</div>
+  </header>
+
+  <main class="interview-grid">
+    <!-- Question Card -->
+    <section class="question-card">
+      <div class="card-header">
+        <h2>
+          <i class="fas fa-question-circle"></i>
+          Interview Question <span id="questionNumber">1</span>
+        </h2>
+      </div>
+      <div id="questionText" class="question-text">Loading question...</div>
+      <div class="q-controls">
+        <button id="prevQuestionBtn" class="icon-bubble" title="Previous Question">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="nextQuestionBtn" class="icon-bubble" title="Next Question">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="submit-section">
+        <button id="submitInterviewBtn" class="btn-submit-large">
+          <i class="fas fa-paper-plane"></i>
+          <span>Submit & Get Feedback</span>
+        </button>
+        <p class="submit-help">Answer all questions and click to see your detailed feedback report</p>
+      </div>
+    </section>
+
+    <!-- Camera Panel -->
+    <section class="camera-panel">
+      <div class="panel-header">
+        <h3>
+          <i class="fas fa-video"></i>
+          Interview Camera
+        </h3>
+        <div class="icon-row">
+          <button id="camToggleBtn" class="icon-bubble active" title="Toggle Camera">
+            <i class="fas fa-camera"></i>
+          </button>
+          <button id="micToggleBtn" class="icon-bubble" title="Microphone Status">
+            <i class="fas fa-microphone"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-wrap">
+        <video id="interviewCamera" autoplay playsinline muted></video>
+        <div id="cameraError" class="camera-error" style="display:none;">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>Camera access denied or unavailable</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transcript Panel -->
+    <section class="transcript-panel">
+      <div class="panel-header">
+        <h3>
+          <i class="fas fa-pen"></i>
+          Your Answer
+        </h3>
+        <div class="icon-row">
+          <button id="startAnswerBtn" class="icon-bubble mic-btn" title="Start Recording">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button id="stopAnswerBtn" class="icon-bubble" title="Stop Recording" disabled>
+            <i class="fas fa-stop"></i>
+          </button>
+          <button id="clearAnswerBtn" class="icon-bubble" title="Clear Answer">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="word-count">
+        <span>Words: <strong id="wordCount">0</strong></span>
+      </div>
+      <textarea 
+        id="transcript" 
+        class="transcript" 
+        placeholder="Click the microphone to start recording or type your answer here..."
+      ></textarea>
+      <div id="listeningIndicator" class="listening-indicator" style="display:none;">
+        <div class="pulse"></div>
+        <span>Listening...</span>
+      </div>
+    </section>
+
+    <!-- Feedback Panel -->
+    <section class="feedback-panel">
+      <div class="panel-header">
+        <h3>
+          <i class="fas fa-chart-line"></i>
+          AI Feedback (Preview)
+        </h3>
+      </div>
+      <div class="scores">
+        <div class="score">
+          <label>Relevance</label>
+          <div id="relevanceScore">—</div>
+        </div>
+        <div class="score">
+          <label>Clarity</label>
+          <div id="clarityScore">—</div>
+        </div>
+        <div class="score">
+          <label>Completeness</label>
+          <div id="completenessScore">—</div>
+        </div>
+      </div>
+      <div id="feedbackText" class="feedback-text">
+        <i class="fas fa-info-circle"></i>
+        Answer the question to receive AI feedback.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built for practice — Frontend demo only</p>
+  </footer>
+
+  <script src="interview-script.js"></script>
+</body>
+</html>

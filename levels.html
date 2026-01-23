@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Levels - AI Mock Interview System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+  <header class="topbar">
+    <div class="brand">
+      <i class="fas fa-brain"></i>
+      AI Mock Interview System
+    </div>
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span id="userEmail">User</span>
+    </div>
+  </header>
+
+  <main class="levels-container">
+    <div class="levels-header">
+      <h1>Select Interview Type</h1>
+      <p class="levels-subtitle">Choose the type of interview you want to practice</p>
+    </div>
+
+    <div class="levels-grid">
+      <!-- HR Interview -->
+      <div class="level-card" data-level="hr">
+        <div class="level-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h2>HR Interview</h2>
+        <p>Practice behavioral questions, cultural fit, and soft skills assessment</p>
+        <ul class="level-features">
+          <li><i class="fas fa-check"></i> Behavioral questions</li>
+          <li><i class="fas fa-check"></i> Situational scenarios</li>
+          <li><i class="fas fa-check"></i> Communication skills</li>
+        </ul>
+        <div class="level-meta">
+          <span><i class="fas fa-clock"></i> 30 min</span>
+          <span><i class="fas fa-question-circle"></i> 8-10 questions</span>
+        </div>
+      </div>
+
+      <!-- Technical Interview -->
+      <div class="level-card" data-level="technical">
+        <div class="level-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h2>Technical Interview</h2>
+        <p>Test your technical knowledge, problem-solving, and system design skills</p>
+        <ul class="level-features">
+          <li><i class="fas fa-check"></i> Technical concepts</li>
+          <li><i class="fas fa-check"></i> System design</li>
+          <li><i class="fas fa-check"></i> Architecture patterns</li>
+        </ul>
+        <div class="level-meta">
+          <span><i class="fas fa-clock"></i> 30 min</span>
+          <span><i class="fas fa-question-circle"></i> 6-8 questions</span>
+        </div>
+      </div>
+
+      <!-- Behavioral Interview -->
+      <div class="level-card" data-level="behavioral">
+        <div class="level-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h2>Behavioral Interview</h2>
+        <p>Demonstrate leadership, teamwork, and past experience handling challenges</p>
+        <ul class="level-features">
+          <li><i class="fas fa-check"></i> STAR method</li>
+          <li><i class="fas fa-check"></i> Past experiences</li>
+          <li><i class="fas fa-check"></i> Leadership scenarios</li>
+        </ul>
+        <div class="level-meta">
+          <span><i class="fas fa-clock"></i> 30 min</span>
+          <span><i class="fas fa-question-circle"></i> 7-9 questions</span>
+        </div>
+      </div>
+
+      <!-- Coding Interview (Future Scope) -->
+      <div class="level-card disabled" data-level="coding">
+        <div class="level-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h2>Coding Interview</h2>
+        <p>Live coding challenges and algorithm problem solving</p>
+        <ul class="level-features">
+          <li><i class="fas fa-times"></i> Coming soon</li>
+          <li><i class="fas fa-times"></i> Data structures</li>
+          <li><i class="fas fa-times"></i> Algorithms</li>
+        </ul>
+        <div class="level-meta">
+          <span><i class="fas fa-clock"></i> 45 min</span>
+          <span><i class="fas fa-question-circle"></i> 3-5 problems</span>
+        </div>
+        <div class="coming-soon-badge">Coming Soon</div>
+      </div>
+    </div>
+
+    <div class="start-section">
+      <button id="startInterviewBtn" class="btn-start" disabled>
+        <span>Start Interview</span>
+        <i class="fas fa-play-circle"></i>
+      </button>
+      <p class="help-text">Select an interview type above to continue</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>AI Mock Interview System - Frontend Demo | Engineering Project</p>
+  </footer>
+
+  <script>
+    // Display user email from localStorage
+    const userEmail = localStorage.getItem('userEmail') || 'Guest';
+    document.getElementById('userEmail').textContent = userEmail;
+
+    // Level selection
+    let selectedLevel = null;
+    const levelCards = document.querySelectorAll('.level-card:not(.disabled)');
+    const startBtn = document.getElementById('startInterviewBtn');
+    const helpText = document.querySelector('.help-text');
+
+    console.log('Level cards found:', levelCards.length);
+
+    levelCards.forEach((card, index) => {
+      console.log(`Setting up click handler for card ${index}:`, card.dataset.level);
+      
+      card.addEventListener('click', function(e) {
+        console.log('Card clicked:', this.dataset.level);
+        
+        // Remove previous selection
+        levelCards.forEach(c => c.classList.remove('selected'));
+        
+        // Select current card
+        this.classList.add('selected');
+        selectedLevel = this.dataset.level;
+        
+        console.log('Selected level:', selectedLevel);
+        
+        // Enable start button
+        startBtn.disabled = false;
+        helpText.textContent = `Ready to start ${this.querySelector('h2').textContent}`;
+        
+        // Add selection animation
+        this.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+
+    // Start interview button
+    startBtn.addEventListener('click', function() {
+      if (!selectedLevel) return;
+      
+      // Store selected level
+      localStorage.setItem('interviewLevel', selectedLevel);
+      localStorage.setItem('interviewStartTime', new Date().toISOString());
+      
+      // Button animation
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1)';
+        // Redirect to interview page
+        window.location.href = 'interview.html';
+      }, 200);
+    });
+
+    // Add hover glow effect
+    levelCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.boxShadow = '0 8px 40px rgba(124, 92, 255, 0.3)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        if (!this.classList.contains('selected')) {
+          this.style.boxShadow = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

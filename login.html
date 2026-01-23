@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AI Mock Interview System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <i class="fas fa-user-tie login-icon"></i>
+        <h1>AI Mock Interview System</h1>
+        <p class="subtitle">Professional Interview Practice Platform</p>
+      </div>
+      
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i>
+            Email / Username
+          </label>
+          <input 
+            type="text" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+            autocomplete="username"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="password">
+            <i class="fas fa-lock"></i>
+            Password
+          </label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+        
+        <button type="submit" class="btn-login">
+          <span>Login</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+      
+      <div class="login-footer">
+        <p>Demo Mode - No Authentication Required</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Login form handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Store user info in localStorage (demo only)
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('loginTime', new Date().toISOString());
+      
+      // Add button press animation
+      const btn = document.querySelector('.btn-login');
+      btn.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        btn.style.transform = 'scale(1)';
+        // Redirect to levels page
+        window.location.href = 'levels.html';
+      }, 200);
+    });
+
+    // Add ripple effect on button click
+    document.querySelector('.btn-login').addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      this.appendChild(ripple);
+      
+      const rect = this.getBoundingClientRect();
+      ripple.style.left = e.clientX - rect.left + 'px';
+      ripple.style.top = e.clientY - rect.top + 'px';
+      
+      setTimeout(() => ripple.remove(), 600);
+    });
+  </script>
+</body>
+</html>

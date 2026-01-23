@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Feedback - AI Mock Interview System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+  <header class="topbar">
+    <div class="brand">
+      <i class="fas fa-brain"></i>
+      AI Mock Interview System
+    </div>
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span id="userEmail">User</span>
+    </div>
+  </header>
+
+  <main class="feedback-container">
+    <div class="feedback-header">
+      <div class="feedback-title">
+        <i class="fas fa-clipboard-check"></i>
+        <h1>Interview Feedback Report</h1>
+      </div>
+      <p class="report-subtitle">Comprehensive analysis of your interview performance</p>
+    </div>
+
+    <!-- Overall Score Cards -->
+    <section class="overall-scores">
+      <div class="score-card">
+        <div class="score-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="score-content">
+          <label>Overall Relevance</label>
+          <div class="score-value" id="overallRelevance">—</div>
+          <div class="score-bar">
+            <div class="score-fill" id="relevanceBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <div class="score-content">
+          <label>Overall Clarity</label>
+          <div class="score-value" id="overallClarity">—</div>
+          <div class="score-bar">
+            <div class="score-fill" id="clarityBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-icon">
+          <i class="fas fa-check-double"></i>
+        </div>
+        <div class="score-content">
+          <label>Overall Completeness</label>
+          <div class="score-value" id="overallCompleteness">—</div>
+          <div class="score-bar">
+            <div class="score-fill" id="completenessBar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Stats -->
+    <section class="summary-stats">
+      <h2><i class="fas fa-chart-bar"></i> Interview Summary</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fas fa-question"></i></div>
+          <div class="stat-content">
+            <label>Questions Answered</label>
+            <div class="stat-value" id="totalQuestions">0</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fas fa-font"></i></div>
+          <div class="stat-content">
+            <label>Total Words</label>
+            <div class="stat-value" id="totalWords">0</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fas fa-calculator"></i></div>
+          <div class="stat-content">
+            <label>Average Answer Length</label>
+            <div class="stat-value" id="avgWords">0</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fas fa-clock"></i></div>
+          <div class="stat-content">
+            <label>Interview Duration</label>
+            <div class="stat-value" id="duration">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Question-wise Feedback -->
+    <section class="question-feedback">
+      <h2><i class="fas fa-list-alt"></i> Question-wise Feedback</h2>
+      <div id="questionFeedbackList" class="feedback-list">
+        <!-- Populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Final Feedback -->
+    <section class="final-feedback">
+      <h2><i class="fas fa-lightbulb"></i> Overall Assessment</h2>
+      <div class="final-feedback-box" id="finalFeedback">
+        <p>Loading feedback...</p>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="action-buttons">
+      <button id="restartBtn" class="btn-action">
+        <i class="fas fa-redo"></i>
+        <span>Restart Interview</span>
+      </button>
+      <button id="levelsBtn" class="btn-action btn-secondary">
+        <i class="fas fa-th-large"></i>
+        <span>Go to Levels</span>
+      </button>
+      <button id="printBtn" class="btn-action btn-secondary">
+        <i class="fas fa-print"></i>
+        <span>Print Report</span>
+      </button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>AI Mock Interview System - Frontend Demo | Engineering Project</p>
+  </footer>
+
+  <script src="feedback.js"></script>
+</body>
+</html>
