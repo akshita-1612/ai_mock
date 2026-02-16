@@ -40,8 +40,12 @@ def load_model_and_vectorizer():
     global model, vectorizer
     
     try:
+        # Get the base directory (go up one level from python_backend)
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        dataset_dir = os.path.join(base_dir, 'dataset')
+        
         # Load the vectorizer
-        vectorizer_path = os.path.join('models', 'vectorizer.pkl')
+        vectorizer_path = os.path.join(dataset_dir, 'tfidf_vectorizer.pkl')
         
         # Try loading with pickle first, then joblib
         try:
@@ -50,10 +54,10 @@ def load_model_and_vectorizer():
         except Exception:
             vectorizer = joblib.load(vectorizer_path)
         
-        print("✓ Vectorizer loaded successfully")
+        print("✓ Vectorizer loaded successfully from dataset folder")
         
         # Load the model
-        model_path = os.path.join('models', 'model.pkl')
+        model_path = os.path.join(dataset_dir, 'interview_model.pkl')
         
         # Try loading with pickle first, then joblib
         try:
@@ -62,12 +66,12 @@ def load_model_and_vectorizer():
         except Exception:
             model = joblib.load(model_path)
         
-        print("✓ Model loaded successfully")
+        print("✓ Model loaded successfully from dataset folder")
         
         return True
     except FileNotFoundError as e:
         print(f"✗ Error: Model files not found - {e}")
-        print("Please ensure 'vectorizer.pkl' and 'model.pkl' are in the 'models' folder")
+        print("Please ensure 'tfidf_vectorizer.pkl' and 'interview_model.pkl' are in the 'dataset' folder")
         return False
     except Exception as e:
         print(f"✗ Error loading model: {e}")
@@ -305,4 +309,4 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)
     else:
         print("\n✗ Failed to start backend. Please check model files.")
-        print("Ensure 'models/vectorizer.pkl' and 'models/model.pkl' exist.")
+        print("Ensure 'dataset/tfidf_vectorizer.pkl' and 'dataset/interview_model.pkl' exist in the root folder.")

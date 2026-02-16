@@ -12,16 +12,19 @@ pip install -r requirements.txt
 
 ### 2. Place Model Files
 
-Create a `models` folder and place your trained model files:
+The backend automatically loads model files from the `dataset` folder in the project root:
 
 ```
-python_backend/
-├── app.py
-├── requirements.txt
-├── models/
-│   ├── model.pkl          # Your trained model file
-│   └── vectorizer.pkl     # Your vectorizer file
+ai mock/
+├── dataset/
+│   ├── interview_model.pkl    # Trained model file
+│   └── tfidf_vectorizer.pkl   # TF-IDF vectorizer file
+├── python_backend/
+│   ├── app.py
+│   └── requirements.txt
 ```
+
+**Note:** Model files should be placed in the `dataset` folder at the project root, not in the python_backend folder.
 
 ### 3. Run the Server
 
